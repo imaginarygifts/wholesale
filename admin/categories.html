@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Categories</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+ 
+<div class="topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+  <span class="title">Categories</span>
+</div>
+
+<input type="text" id="catName" placeholder="Category name">
+<button class="add-category-btn" onclick="addCategory()">Add</button>
+
+<ul id="catList"></ul>
+
+<script type="module" src="../js/guard.js"></script>
+<script type="module" src="../js/categories.js"></script>
+<script>
+  function goBack() {
+    location.href = "add-product.html";
+  }
+</script>
+</body>
+</html>

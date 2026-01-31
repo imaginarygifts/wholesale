@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+  <span class="title">All Products</span>
+</div>
+  <button class="gradient-btn" onclick="location.href='add-product.html'">Add Product</button>
+<!-- Category Bar -->
+<div id="categoryBar" class="category-bar"></div>
+
+<div class="container" id="productList"></div>
+
+<script type="module" src="../js/guard.js"></script>
+<script type="module" src="../js/products.js"></script>
+<script>
+  function goBack() {
+    location.href = "dashboard.html";
+  }
+</script>
+</body>
+</html>

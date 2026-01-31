@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Orders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/orders.css" />
+
+  <!-- Firebase + Orders JS -->
+  <script type="module" src="../js/orders.js"></script>
+</head>
+
+<body class="dark">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <button class="back-btn" onclick="history.back()">←</button>
+    <h1>Orders</h1>
+  </div>
+  
+  <!-- FILTER SECTION -->
+  <div class="filters">
+      
+      <!-- Bulk Action -->
+    
+    <div class="bulk-actions">
+  <select id="bulkActionType">
+    <option value="">Bulk Action</option>
+    <option value="orderStatus">Change Order Status</option>
+    <option value="paymentStatus">Change Payment Status</option>
+  </select>
+
+  <select id="bulkActionValue">
+    <option value="">Select Value</option>
+  </select>
+
+  <button id="applyBulkAction" onclick="applyBulkAction()">Apply</button>
+</div>
+ 
+
+    <!-- DATE FILTER ROW -->
+    <div class="filter-row">
+      <button class="range-btn active" onclick="setRange('today', this)">Today</button>
+      <button class="range-btn" onclick="setRange('7', this)">7 Days</button>
+      <button class="range-btn" onclick="setRange('15', this)">15 Days</button>
+      <button class="range-btn" onclick="setRange('30', this)">30 Days</button>
+      <button class="range-btn" onclick="setRange('365', this)">1 Year</button>
+      <button class="range-btn" onclick="setRange('all', this)">All</button>
+    </div>
+
+    <!-- ADVANCED FILTERS -->
+    <div class="filter-row advanced-filters">
+        <select id="statusFilter">
+  <option value="">All Status</option>
+  <option value="pending">Pending</option>
+  <option value="ready">Ready</option>
+  <option value="shipped">Shipped</option>
+  <option value="in-transit">In Transit</option>
+  <option value="delivered">Delivered</option>
+  <option value="cancelled">Cancelled</option>
+  <option value="returned">Returned</option>
+</select>
+      
+      <select id="paymentStatusFilter">
+  <option value="">All Payment Status</option>
+  <option value="paid">Paid</option>
+  <option value="pending">Pending</option>
+  <option value="failed">Failed</option>
+  <option value="refund">Refund</option>
+</select>
+
+      <select id="paymentFilter">
+  <option value="">All Payment Modes</option>
+  <option value="online">Online</option>
+  <option value="cod">COD</option>
+  <option value="advance">Advance</option>
+  <option value="whatsapp">WhatsApp</option>
+</select>
+
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+      </select>
+      
+      <select id="tagFilter">
+        <option value="">All Tags</option>
+      </select>
+      
+            <select id="productFilter">
+        <option value="">All Products</option>
+      </select>
+    </div>
+
+    <!-- SEARCH -->
+    <input
+      type="text"
+      id="searchInput"
+      class="search-box"
+      placeholder="Search by Order ID, Customer, Phone, Product"
+    />
+    <div class="select-all-row">
+  <label class="select-all-label">
+    <input type="checkbox" id="selectAllOrders">
+    <span>Select All</span>
+  </label>
+</div>
+
+  </div>
+  
+
+  <!-- ORDERS LIST -->
+  <div id="ordersList" class="orders-list">
+    <!-- Firestore orders injected here -->
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination">
+    <button onclick="prevPage()">◀ Prev</button>
+    <span id="pageNo">Page 1</span>
+    <button onclick="nextPage()">Next ▶</button>
+  </div>
+
+</body>
+</html>

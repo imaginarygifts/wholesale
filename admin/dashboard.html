@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="title">Sellfix Dashboard</span>
+  <div class="top-actions">
+    <button class="settings-btn" onclick="goSettings()">⚙</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+</div>
+<div id="stats">
+    
+</div>
+
+<div class="dashboard-actions">
+  <button class="gradient-btn" onclick="location.href='products.html'">Manage Products</button>
+  <button class="gradient-btn" onclick="location.href='add-product.html'">Add Product</button>
+  <button class="gradient-btn" onclick="location.href='coupons.html'">Add Coupon</button>
+</div>
+<section id="cleanupPanel" class="cleanup-panel">
+  <h3>🧹 Storage Cleanup (Custom Images)</h3>
+
+  <div class="cleanup-actions">
+    <button class="btn-outline" onclick="deleteOlderThan7Days()">Delete > 7 Days</button>
+    <button class="btn-danger" onclick="deleteSelectedImages()">Delete Selected</button>
+    <button class="btn-outline" onclick="toggleSelectAll()" id="selectAllBtn">Select All</button>
+  </div>
+
+  <div id="cleanupList" class="cleanup-grid"></div>
+</section>
+<!-- 🔐 Guard -->
+<script type="module" src="../js/guard.js"></script>
+
+<!-- Dashboard logic -->
+<script type="module" src="../js/dashboard.js"></script>
+
+<script type="module">
+  import { auth } from "../js/firebase.js";
+  import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  window.logout = async () => {
+    await signOut(auth);
+    location.href = "login.html";
+  };
+
+  window.goSettings = () => {
+    location.href = "settings.html";
+  };
+</script>
+
+</body>
+</html>

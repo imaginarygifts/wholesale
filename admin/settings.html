@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+  <span class="title">Store Settings</span>
+</div>
+
+<input id="store" placeholder="Store Name">
+<input id="whatsapp" placeholder="WhatsApp Number">
+<button onclick="save()">Save</button>
+
+<script type="module" src="../js/guard.js"></script>
+<script type="module" src="../js/settings.js"></script>
+<script>
+  function goBack() {
+    location.href = "dashboard.html";
+  }
+</script>
+</body>
+</html>
