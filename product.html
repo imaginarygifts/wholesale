@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+    <div class="top-bar custom-topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+</div>
+
+<div class="product-page">
+
+  <div id="slider" class="slider"></div>
+  <div id="sliderDots" class="slider-dots"></div>
+
+  <div id="productDetails" class="product-details"></div>
+
+</div>
+
+<div class="bottom-actions">
+  <button class="buy-btn" onclick="buyNow()">Buy Now</button>
+  <button class="order-btn" onclick="orderNow()">Order On WhatsApp</button>
+</div>
+
+</div>
+</div>
+
+<div id="shareBtn" onclick="sharePage()">🔗</div>
+
+<script type="module" src="js/product.js"></script>
+<script src="js/share.js"></script>
+<script>
+  function goBack() {
+    location.href = "index.html";
+  }
+</script> 
+</body>
+</html>

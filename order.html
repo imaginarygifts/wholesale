@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/order.css" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="top-bar">
+  <span class="back-btn" onclick="goBack()">←</span>
+  <span class="title">Checkout</span>
+</div>
+
+  <div class="checkout-page">
+
+    <div class="glass-card">
+      <h2>Checkout</h2>
+
+      <!-- Customer Details -->
+      <div class="section">
+        <h3>Customer Details</h3>
+        <input type="text" id="custName" placeholder="Full Name" />
+        <input type="tel" id="custPhone" placeholder="Phone Number" />
+        <textarea id="custAddress" placeholder="Full Address"></textarea>
+        <input type="text" id="custPincode" placeholder="Pincode" />
+      </div>
+
+      <!-- Order Summary -->
+      <div class="section">
+        <h3>Order Summary</h3>
+        <div id="orderSummary"></div>
+      </div>
+
+      <!-- Coupon -->
+<div class="section">
+  <h3>Available Coupons</h3>
+
+  <div id="couponListUI" class="coupon-list"></div>
+
+  <div class="coupon-row">
+    <input type="text" id="couponInput" placeholder="Enter coupon code" />
+    <button onclick="applyManualCoupon()">Apply</button>
+  </div>
+
+  <p id="couponMsg"></p>
+</div>
+      <!-- Payment Mode -->
+<label id="onlineOption">
+  <input type="radio" name="paymode" value="online" checked />
+  Online Payment
+</label>
+
+<label id="codOption">
+  <input type="radio" name="paymode" value="cod" />
+  Cash on Delivery
+</label>
+
+<label id="advanceOption">
+  <input type="radio" name="paymode" value="advance" />
+  Pay Advance
+</label>
+
+      <!-- Price Breakdown -->
+      <div class="section">
+        <h3>Price Breakdown</h3>
+        <div class="price-row">
+          <span>Subtotal</span>
+          <span id="subTotal">₹0</span>
+        </div>
+
+        <div class="price-row">
+          <span>Discount</span>
+          <span id="discountAmount">-₹0</span>
+        </div>
+
+        <div class="price-row total">
+          <span>Total</span>
+          <span id="finalAmount">₹0</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Sticky Bottom Bar -->
+  <div class="checkout-bottom">
+    <button class="pay-btn" onclick="placeOrder()">Continue to Payment</button>
+  </div>
+
+  <script type="module" src="js/order.js"></script>
+  
+  <script>
+  function goBack() {
+    history.back();
+  }
+</script>
+</body>
+</html>
