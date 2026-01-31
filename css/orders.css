@@ -1,0 +1,333 @@
+/* =========================
+   BASE
+========================= */
+body.dark {
+  background: #0b0d12;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* =========================
+   HEADER
+========================= */
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* =========================
+   FILTERS CONTAINER
+========================= */
+.filters {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =========================
+   HORIZONTAL SCROLL ROW (COMMON)
+========================= */
+.filter-row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.filter-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   DATE RANGE BUTTONS
+========================= */
+.range-btn {
+  padding: 9px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.range-btn.active {
+  background: linear-gradient(135deg, #00ff9c, #00c3ff);
+  color: #000;
+  font-weight: 600;
+}
+
+/* =========================
+   ADVANCED FILTERS (SELECTS)
+========================= */
+.filter-row select {
+  min-width: 180px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+/* =========================
+   SEARCH INPUT
+========================= */
+.search-box {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+/* =========================
+   ORDERS LIST
+========================= */
+.orders-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================
+   ORDER CARD
+========================= */
+.order-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.order-card:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Thumbnail */
+.order-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #222;
+  flex-shrink: 0;
+}
+
+/* Middle */
+.order-middle {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-id {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.order-product {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.order-customer,
+.order-date {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+/* Right */
+.order-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* =========================
+   BADGES
+========================= */
+.status,
+.payment {
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Order Status */
+.status.pending { background: #facc15; color: #000; }
+.status.ready { background: #38bdf8; color: #000; }
+.status.shipped { background: #a855f7; color: #fff; }
+.status.delivered { background: #22c55e; color: #000; }
+.status.cancelled { background: #ef4444; color: #fff; }
+.status.returned { background: #fb7185; color: #000; }
+
+/* Payment */
+.payment.online { background: #00ff9c; color: #000; }
+.payment.cod { background: #f97316; color: #fff; }
+.payment.advance { background: #0ea5e9; color: #fff; }
+.payment.whatsapp { background: #25D366; color: #fff; }
+
+/* Price */
+.order-price {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* =========================
+   PAGINATION
+========================= */
+.pagination {
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.pagination button {
+  padding: 8px 18px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.payment-status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.payment-status.paid {
+  background: #22c55e;
+  color: #000;
+}
+
+.payment-status.pending {
+  background: #facc15;
+  color: #000;
+}
+
+.payment-status.failed,
+.payment-status.unpaid {
+  background: #ef4444;
+  color: #fff;
+}
+.payment-status-filter {
+  min-width: 160px;
+}
+
+.payment-status.refund {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* =========================
+   BULK ACTION BAR
+========================= */
+.bulk-actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  align-items: center;
+  overflow-x: auto;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+}
+
+/* hide scrollbar */
+.bulk-actions::-webkit-scrollbar {
+  display: none;
+}
+
+/* dropdowns */
+.bulk-actions select {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: #11141c;
+  color: #fff;
+  font-size: 13px;
+}
+
+/* APPLY BUTTON */
+#applyBulkAction {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00ff9c, #00c3ff);
+  color: #000;
+}
+
+/* hover */
+#applyBulkAction:hover {
+  opacity: 0.9;
+}
+
+/* MOBILE SAFE */
+@media (max-width: 480px) {
+  .bulk-actions {
+    padding: 8px;
+  }
+
+  .bulk-actions select {
+    min-width: 110px;
+  }
+
+  #applyBulkAction {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+.select-all-row {
+  padding: 8px 16px;
+}
+
+.select-all-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.select-all-label input {
+  width: 18px;
+  height: 18px;
+  accent-color: #00ff9c;
+}
