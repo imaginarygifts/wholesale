@@ -1,0 +1,150 @@
+/* ===============================
+   CATEGORIES – MOBILE FIRST
+================================ */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #14162d, #070814);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #fff;
+}
+
+/* ---------- TOP BAR ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(15, 16, 40, 0.95);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* ---------- PAGE WRAPPER ---------- */
+
+.page-wrap {
+  padding: 16px;
+  max-width: 520px;
+  margin: auto;
+}
+
+/* ---------- ADD CATEGORY ---------- */
+
+.add-category-wrap {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+#catName {
+  flex: 1;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 16px;
+  border-radius: 14px;
+  border: none;
+  outline: none;
+  background: #1c1f3d;
+  color: #fff;
+}
+
+.add-category-btn {
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 14px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff8a00, #ffb347);
+  color: #000;
+}
+
+/* ---------- CATEGORY LIST ---------- */
+
+#catList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ---------- CATEGORY CARD ---------- */
+
+#catList li {
+  background: linear-gradient(145deg, #1c1f3d, #15183a);
+  border-radius: 16px;
+  padding: 16px 14px;
+  margin-bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  font-size: 16px;
+  min-height: 60px;
+
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* drag handle */
+#catList li span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#catList li span::before {
+  content: "☰";
+  opacity: 0.6;
+  font-size: 18px;
+}
+
+/* ---------- DRAG STATES ---------- */
+
+#catList li.dragging {
+  opacity: 0.6;
+  transform: scale(0.97);
+}
+
+#catList li.drag-over {
+  box-shadow: 0 0 0 2px #ff9f1a inset;
+}
+
+/* ---------- DELETE BUTTON ---------- */
+
+#catList button {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  border: none;
+  background: #ff3b3b;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* ---------- DESKTOP ---------- */
+
+@media (min-width: 768px) {
+  body {
+    background: linear-gradient(135deg, #0b0c1a, #11132b);
+  }
+}
