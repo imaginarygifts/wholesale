@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Product</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+  <span class="title">Edit Product</span>
+</div>
+
+<div class="container">
+
+  <label>Product Name</label>
+  <input id="name">
+
+  <label>Description</label>
+  <textarea id="desc"></textarea>
+
+  <label>Base Price</label>
+  <input id="price" type="number">
+
+  <label>Category</label>
+  <select id="category"></select>
+  
+<!-- TAGS -->
+<div class="section">
+  <h3>Tags</h3>
+
+  <div class="tag-box">
+    <div id="tagCheckboxes" class="tag-list">
+        <input type="checkbox" id="isBestseller">
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- IMAGES -->
+  <h3>Images</h3>
+  <div id="imagePreview" class="image-row"></div>
+
+  <label class="image-picker">
+    <input type="file" id="newImages" multiple accept="image/*">
+    <div class="image-pick-box">
+      Tap to add images
+    </div>
+  </label>
+
+      <div><h4>Related Designs</h4>
+        <input type="text" id="designSearch" placeholder="Search products..." oninput="filterDesigns()">
+        </div>
+  <div id="relatedDesignsList" class="form-section">
+
+
+  <div id="designList" class="design-list"></div>
+</div>
+
+  <!-- VARIANTS -->
+  <div class="accordion" onclick="toggleSection('variantsSection')">
+    ▶ Variants
+  </div>
+
+  <div id="variantsSection" class="hidden">
+
+    <h4>Colors</h4>
+    <input id="editColorName" placeholder="Color name">
+    <input id="editColorPrice" placeholder="Extra price" type="number">
+    <button class="btn-outline" onclick="addEditColor()">Add Color</button>
+    <div id="editColorList"></div>
+
+    <h4>Sizes</h4>
+    <input id="editSizeName" placeholder="Size name">
+    <input id="editSizePrice" placeholder="Extra price" type="number">
+    <button class="btn-outline" onclick="addEditSize()">Add Size</button>
+    <div id="editSizeList"></div>
+
+  </div>
+
+  <!-- CUSTOM OPTIONS -->
+  <div class="accordion" onclick="toggleSection('customSection')">
+    ▶ Custom Options
+  </div>
+
+  <div id="customSection" class="hidden">
+
+    <label>Option Type</label>
+    <select id="editCustomType">
+      <option value="text">Text</option>
+      <option value="image">Image Upload</option>
+      <option value="checkbox">Checkbox</option>
+      <option value="dropdown">Dropdown</option>
+    </select>
+
+    <input id="editCustomLabel" placeholder="Option label">
+    <input id="editCustomPrice" placeholder="Extra price" type="number">
+    <input id="editCustomChoices" placeholder="Dropdown choices (comma separated)">
+
+    <button class="btn-outline" onclick="addEditCustomOption()">Add Option</button>
+    <div id="editCustomList"></div>
+
+  </div>
+  
+  <!-- PAYMENT & DISCOUNTS -->
+<div class="accordion">
+  <div class="accordion-header" onclick="toggleSection('paymentSection')">
+    💳 Payment & Discounts
+  </div>
+
+  <div id="paymentSection" class="accordion-body hidden">
+
+    <h4>Payment Methods</h4>
+
+    <label>
+      <input type="checkbox" id="allowOnline" checked>
+      Allow Online Payment
+    </label>
+
+    <label>
+      <input type="checkbox" id="allowCOD">
+      Allow Cash on Delivery
+    </label>
+
+    <label>
+      <input type="checkbox" id="allowAdvance">
+      Allow Advance Payment
+    </label>
+
+    <hr>
+
+    <h4>Discounts</h4>
+
+    <!-- Online Discount -->
+    <div class="row">
+      <label>Online Discount</label>
+      <select id="onlineDiscountType">
+        <option value="none">None</option>
+        <option value="percent">%</option>
+        <option value="flat">₹</option>
+      </select>
+      <input type="number" id="onlineDiscountValue" placeholder="Value">
+    </div>
+
+    <!-- COD Discount -->
+    <div class="row">
+      <label>COD Discount</label>
+      <select id="codDiscountType">
+        <option value="none">None</option>
+        <option value="percent">%</option>
+        <option value="flat">₹</option>
+      </select>
+      <input type="number" id="codDiscountValue" placeholder="Value">
+    </div>
+
+    <!-- Advance Discount -->
+    <div class="row">
+      <label>Advance Discount</label>
+      <select id="advanceDiscountType">
+        <option value="none">None</option>
+        <option value="percent">%</option>
+        <option value="flat">₹</option>
+      </select>
+      <input type="number" id="advanceDiscountValue" placeholder="Value">
+    </div>
+
+    <hr>
+
+    <h4>Advance Booking</h4>
+
+    <div class="row">
+      <label>Advance Amount</label>
+      <select id="advanceType">
+        <option value="percent">%</option>
+        <option value="flat">₹</option>
+      </select>
+      <input type="number" id="advanceValue" placeholder="Advance value">
+    </div>
+
+  </div>
+</div>
+
+
+
+  <button class="btn" onclick="updateProduct()">Update Product</button>
+
+</div>
+
+<div id="popup" class="popup hidden"></div>
+
+<!-- Guard -->
+<script type="module" src="../js/guard.js"></script>
+
+<!-- Logic -->
+<script type="module" src="../js/edit-product.js"></script>
+<script>
+  function goBack() {
+    location.href = "products.html";
+  }
+</script>
+</body>
+</html>

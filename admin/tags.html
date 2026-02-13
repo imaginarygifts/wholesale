@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tags</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span onclick="location.href='dashboard.html'">←</span>
+  Product Tags
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h3>Add Tag</h3>
+    <input id="tagName" placeholder="Tag name (e.g. Bestseller)"></div><div>
+    <button class="gradient-btn" onclick="saveTag()">Save Tag</button>
+  </div>
+
+  <h3 style="margin-top:20px">All Tags</h3>
+  <div id="tagList"></div>
+
+</div>
+
+<div id="popup" class="popup hidden"></div>
+
+<script type="module" src="../js/guard.js"></script>
+<script type="module" src="../js/tags.js"></script>
+
+</body>
+</html>

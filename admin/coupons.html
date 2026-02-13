@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coupons</title>
+  <link rel="stylesheet" href="../css/coupons.css">
+</head>
+<body>
+
+<h2>Coupons</h2>
+
+<div class="card">
+  <input id="code" placeholder="Coupon Code">
+  
+  <select id="type">
+    <option value="percent">Percent</option>
+    <option value="flat">Flat</option>
+  </select>
+
+  <input id="value" type="number" placeholder="Discount value">
+
+  <input id="minOrder" type="number" placeholder="Minimum order">
+
+  <input id="expiry" type="date">
+
+  <select id="scope">
+    <option value="global">Global</option>
+    <option value="product">Product specific</option>
+  </select>
+
+  <label>
+    <input type="checkbox" value="online" class="payMode"> Online
+  </label>
+  <label>
+    <input type="checkbox" value="cod" class="payMode"> COD
+  </label>
+  <label>
+    <input type="checkbox" value="advance" class="payMode"> Advance
+  </label>
+
+  <select id="stackRule">
+    <option value="stack">Stack</option>
+    <option value="replace">Replace</option>
+    <option value="best">Best</option>
+  </select>
+
+  <button onclick="saveCoupon()">Save Coupon</button>
+</div>
+
+<h3>All Coupons</h3>
+<div id="couponList"></div>
+
+<script type="module" src="../js/coupons.js"></script>
+</body>
+</html>

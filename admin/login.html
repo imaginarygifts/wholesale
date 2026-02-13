@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+
+<style>
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== BODY ===== */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* ===== LOGIN BOX ===== */
+.login-box {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* ===== TITLE ===== */
+.login-box h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* ===== INPUTS ===== */
+.login-box input {
+  width: 100%;
+  padding: 14px 12px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+/* ===== BUTTON ===== */
+.login-box button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #00c6ff;
+  background: linear-gradient(to right, #0072ff, #00c6ff);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-box button:active {
+  transform: scale(0.98);
+}
+
+/* ===== ERROR TEXT ===== */
+#error {
+  margin-top: 12px;
+  color: #ff6b6b;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ===== SMALL DEVICES ===== */
+@media (max-width: 360px) {
+  .login-box {
+    padding: 20px;
+  }
+
+  .login-box h2 {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <h2>Admin Login</h2>
+  <input type="text" id="username" placeholder="Email or Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <p id="error"></p>
+</div>
+
+<script type="module" src="../js/auth.js"></script>
+</body>
+</html>
