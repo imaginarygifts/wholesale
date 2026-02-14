@@ -3,14 +3,15 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyATNHNTN0S_otYHNGuydqOjcr1AhCgD6yc",
-  authDomain: "imaginary-gifts.firebaseapp.com",
-  projectId: "imaginary-gifts",
-  storageBucket: "imaginary-gifts.firebasestorage.app",
-  messagingSenderId: "759826392629",
-  appId: "1:759826392629:web:9d9bbe53c8ab36ad07737c",
-  measurementId: "G-KXGKEFBC1F"
+  apiKey: "AIzaSyCvqsHjq_SZCPC3vGSLRjE8lxVir24lXW8",
+  authDomain: "wholesale-12cc1.firebaseapp.com",
+  projectId: "wholesale-12cc1",
+  storageBucket: "wholesale-12cc1.firebasestorage.app",
+  messagingSenderId: "972836157627",
+  appId: "1:972836157627:web:dd7a25e73b64e092cbd19e",
+  measurementId: "G-S51ETN7RQ6"
 };
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
