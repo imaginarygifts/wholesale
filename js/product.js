@@ -364,7 +364,7 @@ window.submitWaOrder = async function () {
       await setDoc(counterRef, { current: nextNumber });
     }
 
-    const orderNumber = `IG-${nextNumber}`;
+    const orderNumber = `IG-W-${nextNumber}`;
 
     // ================= SAVE ORDER =================
     const orderData = {
