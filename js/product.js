@@ -3,7 +3,7 @@ import { doc, getDoc, setDoc, getDocs, collection, updateDoc, addDoc } from "htt
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 // ===== CONFIG =====
-const WHATSAPP_NUMBER = "917030191819";
+const WHATSAPP_NUMBER = "917385235738";
 
 // ===== GLOBALS =====
 const id = new URLSearchParams(window.location.search).get("id");
@@ -413,7 +413,7 @@ window.submitWaOrder = async function () {
     await addDoc(collection(db, "orders"), orderData);
 
     // ================= WHATSAPP MESSAGE =================
-    let msg = `🛍 *New Order — Imaginary Gifts*\n\n`;
+    let msg = `🛍 *Wholesale order — Imaginary Gifts*\n\n`;
     msg += `🧾 *Order No:* ${orderNumber}\n\n`;
 
     msg += `👤 *Name:* ${name}\n`;
