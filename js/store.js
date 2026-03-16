@@ -1,9 +1,9 @@
 import { db } from "./firebase.js";
 import {
-  collection,
-  getDocs,
-  query,
-  orderBy
+collection,
+getDocs,
+query,
+orderBy
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const grid = document.getElementById("productGrid");
@@ -20,218 +20,180 @@ let activeTag = "all";
 /* ================= HELPERS ================= */
 
 function getUsedCategoryIds() {
-  return new Set(allProducts.map(p => p.categoryId).filter(Boolean));
+return new Set(allProducts.map(p => p.categoryId).filter(Boolean));
 }
 
 function getUsedTagSlugs() {
-  const set = new Set();
-  allProducts.forEach(p => {
-    if (Array.isArray(p.tags)) {
-      p.tags.forEach(t => set.add(t));
-    }
-  });
-  return set;
+const set = new Set();
+allProducts.forEach(p => {
+if (Array.isArray(p.tags)) {
+p.tags.forEach(t => set.add(t));
+}
+});
+return set;
 }
 
 /* ================= PRODUCTS ================= */
 
 async function loadProducts() {
-  const snap = await getDocs(collection(db, "products"));
-  allProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  renderProducts();
+const snap = await getDocs(collection(db, "products"));
+allProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+renderProducts();
 }
 
 /* ================= CATEGORIES ================= */
 
 async function loadCategories() {
+const q = query(
+collection(db, "categories"),
+orderBy("order")
+);
 
-  const q = query(
-    collection(db, "categories"),
-    orderBy("order")
-  );
+const snap = await getDocs(q);
+const usedCategoryIds = getUsedCategoryIds();
 
-  const snap = await getDocs(q);
-  const usedCategoryIds = getUsedCategoryIds();
+allCategories = snap.docs
+.map(d => ({ id: d.id, ...d.data() }))
+.filter(cat => usedCategoryIds.has(cat.id));
 
-  allCategories = snap.docs
-    .map(d => ({ id: d.id, ...d.data() }))
-    .filter(cat => usedCategoryIds.has(cat.id));
-
-  renderCategoryBar();
-
+renderCategoryBar();
 }
 
 function renderCategoryBar() {
+categoryBar.innerHTML = "";
 
-  categoryBar.innerHTML = "";
+categoryBar.appendChild(createCategoryBtn("All", "all"));
 
-  categoryBar.appendChild(createCategoryBtn("All", "all"));
-
-  allCategories.forEach(cat => {
-    categoryBar.appendChild(createCategoryBtn(cat.name, cat.id));
-  });
-
+allCategories.forEach(cat => {
+categoryBar.appendChild(createCategoryBtn(cat.name, cat.id));
+});
 }
 
 function createCategoryBtn(label, id) {
+const div = document.createElement("div");
+div.className = "category-pill" + (activeCategory === id ? " active" : "");
+div.innerText = label;
 
-  const div = document.createElement("div");
+div.onclick = () => {
+activeCategory = id;
+document
+.querySelectorAll(".category-pill")
+.forEach(p => p.classList.remove("active"));
 
-  div.className =
-    "category-pill" + (activeCategory === id ? " active" : "");
+div.classList.add("active");  
+renderProducts();
 
-  div.innerText = label;
+};
 
-  div.onclick = () => {
-
-    activeCategory = id;
-
-    document
-      .querySelectorAll(".category-pill")
-      .forEach(p => p.classList.remove("active"));
-
-    div.classList.add("active");
-
-    renderProducts();
-
-  };
-
-  return div;
-
+return div;
 }
 
 /* ================= TAGS ================= */
 
 async function loadFrontendTags() {
+if (!tagRow) return;
 
-  if (!tagRow) return;
+const snap = await getDocs(collection(db, "tags"));
+const usedTagSlugs = getUsedTagSlugs();
 
-  const snap = await getDocs(collection(db, "tags"));
-  const usedTagSlugs = getUsedTagSlugs();
+allTags = snap.docs
+.map(d => d.data())
+.filter(tag => usedTagSlugs.has(tag.slug));
 
-  allTags = snap.docs
-    .map(d => d.data())
-    .filter(tag => usedTagSlugs.has(tag.slug));
-
-  renderTags();
-
+renderTags();
 }
 
 function renderTags() {
+tagRow.innerHTML = "";
 
-  tagRow.innerHTML = "";
+tagRow.appendChild(createTagChip("All", "all"));
 
-  tagRow.appendChild(createTagChip("All", "all"));
-
-  allTags.forEach(tag => {
-    tagRow.appendChild(createTagChip(tag.name, tag.slug));
-  });
-
+allTags.forEach(tag => {
+tagRow.appendChild(createTagChip(tag.name, tag.slug));
+});
 }
 
 function createTagChip(label, slug) {
+const chip = document.createElement("div");
+chip.className = "tag-chip" + (activeTag === slug ? " active" : "");
+chip.innerText = label;
 
-  const chip = document.createElement("div");
+chip.onclick = () => {
+activeTag = activeTag === slug ? "all" : slug;
+updateTagUI();
+renderProducts();
+};
 
-  chip.className = "tag-chip" + (activeTag === slug ? " active" : "");
-
-  chip.innerText = label;
-
-  chip.dataset.slug = slug;
-
-  chip.onclick = () => {
-
-    activeTag = slug;
-
-    updateTagUI();
-
-    renderProducts();
-
-  };
-
-  return chip;
-
+return chip;
 }
 
 function updateTagUI() {
+document.querySelectorAll(".tag-chip").forEach(chip => {
+const slug = chip.innerText.toLowerCase();
+chip.classList.remove("active");
 
-  document.querySelectorAll(".tag-chip").forEach(chip => {
+if (  
+  (activeTag === "all" && slug === "all") ||  
+  slug === activeTag  
+) {  
+  chip.classList.add("active");  
+}
 
-    chip.classList.remove("active");
-
-    if (chip.dataset.slug === activeTag) {
-      chip.classList.add("active");
-    }
-
-  });
-
+});
 }
 
 /* ================= RENDER PRODUCTS ================= */
 
 function renderProducts() {
+grid.innerHTML = "";
 
-  grid.innerHTML = "";
+const filtered = allProducts.filter(p => {
+const categoryMatch =
+activeCategory === "all" || p.categoryId === activeCategory;
 
-  const filtered = allProducts.filter(p => {
+const tagMatch =  
+  activeTag === "all" ||  
+  (Array.isArray(p.tags) && p.tags.includes(activeTag));  
 
-    const categoryMatch =
-      activeCategory === "all" ||
-      p.categoryId === activeCategory;
+return categoryMatch && tagMatch;
 
-    const tagMatch =
-      activeTag === "all" ||
-      (Array.isArray(p.tags) && p.tags.includes(activeTag));
+});
 
-    return categoryMatch && tagMatch;
+if (!filtered.length) {
+grid.innerHTML = <p class="empty">No products found</p>;
+return;
+}
 
-  });
+filtered.forEach(p => {
+const card = document.createElement("div");
+card.className = "product-card";
 
-  if (!filtered.length) {
+const isBestseller = p.tags && p.tags.includes("bestseller");  
 
-    grid.innerHTML = `<p class="empty">No products found</p>`;
+card.innerHTML = `  
+  <div class="img-wrap">  
+    ${isBestseller ? `<span class="badge">🔥 Bestseller</span>` : ""}  
+    <img src="${p.images?.[0] || ""}">  
+  </div>  
+  <div class="info">  
+    <h4>${p.name}</h4>  
+    <p>₹${p.basePrice}</p>  
+  </div>  
+`;  
 
-    return;
+card.onclick = () => {  
+  location.href = `product.html?id=${p.id}`;  
+};  
 
-  }
+grid.appendChild(card);
 
-  filtered.forEach(p => {
-
-    const card = document.createElement("div");
-
-    card.className = "product-card";
-
-    const isBestseller = p.isBestseller === true;
-
-    card.innerHTML = `
-      <div class="img-wrap">
-        ${isBestseller ? `<span class="badge">🔥 Bestseller</span>` : ""}
-        <img loading="lazy" src="${p.images?.[0] || ""}">
-      </div>
-      <div class="info">
-        <h4>${p.name}</h4>
-        <p>₹${p.basePrice}</p>
-      </div>
-    `;
-
-    card.onclick = () => {
-      location.href = \`product.html?id=\${p.id}\`;
-    };
-
-    grid.appendChild(card);
-
-  });
-
+});
 }
 
 /* ================= INIT ================= */
 
 (async function init() {
-
-  await loadProducts();
-
-  await loadCategories();
-
-  await loadFrontendTags();
-
+await loadProducts();
+await loadCategories();
+await loadFrontendTags();
 })();
