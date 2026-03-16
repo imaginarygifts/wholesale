@@ -44,6 +44,7 @@ async function loadProducts() {
 /* ================= CATEGORIES ================= */
 
 async function loadCategories() {
+
   const q = query(
     collection(db, "categories"),
     orderBy("order")
@@ -57,9 +58,11 @@ async function loadCategories() {
     .filter(cat => usedCategoryIds.has(cat.id));
 
   renderCategoryBar();
+
 }
 
 function renderCategoryBar() {
+
   categoryBar.innerHTML = "";
 
   categoryBar.appendChild(createCategoryBtn("All", "all"));
@@ -67,29 +70,40 @@ function renderCategoryBar() {
   allCategories.forEach(cat => {
     categoryBar.appendChild(createCategoryBtn(cat.name, cat.id));
   });
+
 }
 
 function createCategoryBtn(label, id) {
+
   const div = document.createElement("div");
-  div.className = "category-pill" + (activeCategory === id ? " active" : "");
+
+  div.className =
+    "category-pill" + (activeCategory === id ? " active" : "");
+
   div.innerText = label;
 
   div.onclick = () => {
+
     activeCategory = id;
+
     document
       .querySelectorAll(".category-pill")
       .forEach(p => p.classList.remove("active"));
 
     div.classList.add("active");
+
     renderProducts();
+
   };
 
   return div;
+
 }
 
 /* ================= TAGS ================= */
 
 async function loadFrontendTags() {
+
   if (!tagRow) return;
 
   const snap = await getDocs(collection(db, "tags"));
@@ -100,9 +114,11 @@ async function loadFrontendTags() {
     .filter(tag => usedTagSlugs.has(tag.slug));
 
   renderTags();
+
 }
 
 function renderTags() {
+
   tagRow.innerHTML = "";
 
   tagRow.appendChild(createTagChip("All", "all"));
@@ -110,67 +126,87 @@ function renderTags() {
   allTags.forEach(tag => {
     tagRow.appendChild(createTagChip(tag.name, tag.slug));
   });
+
 }
 
 function createTagChip(label, slug) {
+
   const chip = document.createElement("div");
+
   chip.className = "tag-chip" + (activeTag === slug ? " active" : "");
+
   chip.innerText = label;
 
+  chip.dataset.slug = slug;
+
   chip.onclick = () => {
-    activeTag = activeTag === slug ? "all" : slug;
+
+    activeTag = slug;
+
     updateTagUI();
+
     renderProducts();
+
   };
 
   return chip;
+
 }
 
 function updateTagUI() {
+
   document.querySelectorAll(".tag-chip").forEach(chip => {
-    const slug = chip.innerText.toLowerCase();
+
     chip.classList.remove("active");
 
-    if (
-      (activeTag === "all" && slug === "all") ||
-      slug === activeTag
-    ) {
+    if (chip.dataset.slug === activeTag) {
       chip.classList.add("active");
     }
+
   });
+
 }
 
 /* ================= RENDER PRODUCTS ================= */
 
 function renderProducts() {
+
   grid.innerHTML = "";
 
   const filtered = allProducts.filter(p => {
+
     const categoryMatch =
-      activeCategory === "all" || p.categoryId === activeCategory;
+      activeCategory === "all" ||
+      p.categoryId === activeCategory;
 
     const tagMatch =
       activeTag === "all" ||
       (Array.isArray(p.tags) && p.tags.includes(activeTag));
 
     return categoryMatch && tagMatch;
+
   });
 
   if (!filtered.length) {
+
     grid.innerHTML = `<p class="empty">No products found</p>`;
+
     return;
+
   }
 
   filtered.forEach(p => {
+
     const card = document.createElement("div");
+
     card.className = "product-card";
 
-    const isBestseller = p.tags && p.tags.includes("bestseller");
+    const isBestseller = p.isBestseller === true;
 
     card.innerHTML = `
       <div class="img-wrap">
         ${isBestseller ? `<span class="badge">🔥 Bestseller</span>` : ""}
-        <img src="${p.images?.[0] || ""}">
+        <img loading="lazy" src="${p.images?.[0] || ""}">
       </div>
       <div class="info">
         <h4>${p.name}</h4>
@@ -179,17 +215,23 @@ function renderProducts() {
     `;
 
     card.onclick = () => {
-      location.href = `product.html?id=${p.id}`;
+      location.href = \`product.html?id=\${p.id}\`;
     };
 
     grid.appendChild(card);
+
   });
+
 }
 
 /* ================= INIT ================= */
 
 (async function init() {
+
   await loadProducts();
+
   await loadCategories();
+
   await loadFrontendTags();
+
 })();
