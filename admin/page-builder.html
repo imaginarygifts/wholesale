@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/home-sections.css">
+<link rel="stylesheet" href="../css/page-builder-admin.css">
+</head>
+<body class="admin-body">
+
+  <div id="app" class="admin-app" hidden>
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <span class="admin-logo">Homepage Builder</span>
+      </div>
+      <div class="admin-header-right">
+        <a href="../index.html" target="_blank" class="btn btn-ghost">View live page ↗</a>
+        <a href="index.html" class="btn btn-ghost">← Back to dashboard</a>
+      </div>
+    </header>
+
+    <div class="admin-body-layout">
+      <aside class="admin-sidebar">
+        <h2>Add section</h2>
+        <div id="add-section-buttons" class="add-section-buttons"></div>
+        <p class="sidebar-hint">Drag sections in the list to reorder. Drag the bottom-right corner of a preview to resize its height.</p>
+      </aside>
+
+      <main class="admin-main">
+        <ul id="section-list" class="section-list"></ul>
+        <p id="empty-state" class="empty-state" hidden>No sections yet — add your first one from the left panel.</p>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="../js/page-builder-admin.js"></script>
+</body>
+</html>
