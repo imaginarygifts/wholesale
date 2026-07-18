@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imaginary Gifts — Personalized Gifts for Everyone</title>
+<meta name="description" content="Shop personalized gifts, photo frames, wallets, jewellery and more at Imaginary Gifts.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/topbar.css">
+<link rel="stylesheet" href="css/home-sections.css">
+
+<style>
+  body { margin: 0; background: #0A0A0C; }
+</style>
+</head>
+<body>
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="ig-topbar">
+    <div class="ig-topbar-left">
+      <button id="ig-menu-btn" class="ig-icon-btn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="index.html" class="ig-brand">
+        <span class="ig-brand-icon">🎁</span>
+        <span class="ig-brand-name">Imaginary Gifts</span>
+      </a>
+    </div>
+    <div class="ig-topbar-right">
+      <button class="ig-icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="ig-icon-btn ig-cart-badge" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="ig-cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Slide-out nav -->
+  <div id="ig-nav-drawer" class="ig-nav-drawer">
+    <div class="ig-nav-drawer-backdrop"></div>
+    <nav class="ig-nav-drawer-panel">
+      <button id="ig-drawer-close" class="ig-nav-drawer-close" aria-label="Close menu">✕</button>
+      <a href="index.html">Home</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="contact-us.html">Contact Us</a>
+    </nav>
+  </div>
+
+  <!-- ===================== BUILDER-MANAGED CONTENT ===================== -->
+  <main id="ig-home-sections"></main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="ig-footer">
+    <p>© <span id="ig-year"></span> Imaginary Gifts. All rights reserved. ·
+      <a href="aboutus.html">About</a> · <a href="contact-us.html">Contact</a>
+    </p>
+  </footer>
+
+  <script>document.getElementById("ig-year").textContent = new Date().getFullYear();</script>
+  <script src="js/topbar.js"></script>
+  <script type="module" src="js/home-sections-public.js"></script>
+</body>
+</html>
