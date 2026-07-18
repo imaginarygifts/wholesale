@@ -1,0 +1,177 @@
+/* ===================== DESIGN TOKENS (Imaginary Gifts theme) ===================== */
+:root {
+  --ig-bg: #0A0A0C;
+  --ig-surface: #17171B;
+  --ig-border: #2A2A30;
+  --ig-text: #F2F2F0;
+  --ig-text-soft: #A6A6AE;
+  --ig-gold: #F7C948;                 /* logo / heading accent */
+  --ig-gradient-warm: linear-gradient(90deg, #FF7A30, #FF3D77, #B23BFF);
+  --ig-gradient-cool: linear-gradient(90deg, #12C2E9, #0BDBB6);
+  --ig-green: #17C964;                /* discount badge */
+  --ig-radius: 14px;
+  --ig-font-display: "Poppins", sans-serif;
+  --ig-font-body: "Inter", sans-serif;
+}
+
+.ig-home * { box-sizing: border-box; }
+.ig-home {
+  background: var(--ig-bg);
+  color: var(--ig-text);
+  font-family: var(--ig-font-body);
+}
+
+.ig-section { width: 100%; padding: 48px 20px; overflow: hidden; }
+.ig-section.ig-contained { max-width: 1100px; margin: 0 auto; }
+.ig-section.ig-full { padding-left: 0; padding-right: 0; }
+
+/* ---------- Heading ---------- */
+.ig-heading { display: flex; flex-direction: column; gap: 10px; }
+.ig-align-center { text-align: center; align-items: center; }
+.ig-align-left { text-align: left; align-items: flex-start; }
+.ig-align-right { text-align: right; align-items: flex-end; }
+.ig-title {
+  font-family: var(--ig-font-display);
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 40px);
+  margin: 0;
+  color: var(--ig-gold);
+  letter-spacing: -0.01em;
+}
+.ig-subtitle { color: var(--ig-text-soft); font-size: 16px; margin: 0; max-width: 640px; }
+.ig-heading-logo { max-height: 64px; width: auto; }
+
+/* ---------- Carousels (shared shell) ---------- */
+.ig-carousel-wrap { position: relative; display: flex; align-items: center; gap: 8px; }
+.ig-carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 4px 4px 14px;
+  flex: 1;
+  scrollbar-width: thin;
+}
+.ig-carousel-track::-webkit-scrollbar { height: 6px; }
+.ig-carousel-track::-webkit-scrollbar-thumb { background: var(--ig-border); border-radius: 4px; }
+
+.ig-nav {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ig-gradient-cool);
+  font-size: 20px;
+  cursor: pointer;
+  color: #06231F;
+  font-weight: 700;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.ig-nav:hover { transform: scale(1.08); }
+
+/* ---------- Product cards (matches storefront card style) ---------- */
+.ig-product-card {
+  scroll-snap-align: start;
+  flex: 0 0 220px;
+  background: var(--ig-surface);
+  border-radius: var(--ig-radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border: 1px solid var(--ig-border);
+}
+.ig-product-image { position: relative; background: #fff; }
+.ig-product-image img { width: 100%; height: 190px; object-fit: contain; display: block; }
+.ig-badge {
+  position: absolute; top: 8px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
+}
+.ig-badge-discount { left: 8px; background: var(--ig-green); color: #06231A; }
+.ig-badge-best { right: 8px; background: var(--ig-gold); color: #241900; }
+.ig-product-body { padding: 12px 14px; }
+.ig-product-body h4 { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--ig-text); }
+.ig-product-price { display: flex; align-items: baseline; gap: 8px; }
+.ig-price-now { font-weight: 700; font-size: 15px; color: #fff; }
+.ig-price-was { font-size: 12px; color: var(--ig-text-soft); text-decoration: line-through; }
+
+/* ---------- Image carousel cards ---------- */
+.ig-image-card {
+  scroll-snap-align: start;
+  flex: 0 0 240px;
+  background: var(--ig-surface);
+  border: 1px solid var(--ig-border);
+  border-radius: var(--ig-radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.ig-image-card img { width: 100%; height: 180px; object-fit: cover; display: block; background: var(--ig-border); }
+.ig-card-body { padding: 12px 14px; }
+.ig-card-body p { margin: 0; font-size: 13px; color: var(--ig-text-soft); }
+
+/* ---------- YouTube shorts (9:16) ---------- */
+.ig-shorts-track { gap: 16px; }
+.ig-short-card { flex: 0 0 190px; scroll-snap-align: start; }
+.ig-short-card iframe {
+  width: 190px; height: 338px;
+  border: 0; border-radius: var(--ig-radius);
+  background: #000;
+}
+.ig-short-title { font-size: 13px; color: var(--ig-text-soft); margin: 8px 2px 0; }
+
+/* ---------- Reviews ---------- */
+.ig-review-card {
+  flex: 0 0 270px;
+  scroll-snap-align: start;
+  background: var(--ig-surface);
+  border: 1px solid var(--ig-border);
+  border-radius: var(--ig-radius);
+  padding: 20px;
+}
+.ig-review-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; }
+.ig-review-stars { color: var(--ig-gold); letter-spacing: 2px; margin-bottom: 8px; }
+.ig-review-text { font-size: 14px; color: var(--ig-text); margin: 0 0 10px; }
+.ig-review-name { font-size: 13px; font-weight: 600; color: var(--ig-text-soft); }
+
+/* ---------- Banner ---------- */
+.ig-banner {
+  border-radius: var(--ig-radius);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ig-surface);
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.ig-banner-overlay::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.7), rgba(0,0,0,.1));
+  border-radius: var(--ig-radius);
+}
+.ig-banner-inner { position: relative; z-index: 1; padding: 36px; max-width: 460px; color: #fff; }
+.ig-banner-title { font-family: var(--ig-font-display); font-size: clamp(22px, 3.4vw, 34px); font-weight: 800; margin: 0 0 8px; }
+.ig-banner-subtitle { margin: 0 0 18px; opacity: .9; }
+.ig-banner-btn {
+  display: inline-block;
+  background: var(--ig-gradient-warm);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .ig-section { padding: 32px 14px; }
+  .ig-product-card, .ig-image-card { flex-basis: 170px; }
+}
